@@ -1,10 +1,4 @@
-const solution = (a,b) => {
-    if(a>b){
-        const tmp = b;
-        b = a; a = tmp;
-    }else if(b === a) return a;
-    let sum = 0;
-    for(let i=a; i<=b; i++){
-        sum += i;
-    }return sum;
+const solution = (a,b, sum=0) => {
+    for(let i=Math.min(a,b); i<=Math.max(a,b); i++) sum+=i;
+    return sum;
 }

@@ -1,15 +1,18 @@
 function solution(s, n) {
-    const answer = s.split('').map((ch)=>{
-        const code = ch.charCodeAt();
-        if(97 <= code && code <= 122){
-            return String.fromCharCode((code+n - 97) % 26 + 97)
+    var answer = '';
+    let upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let lower = [...upper].map((v) => v.toLowerCase()).join('');
+    
+    for(let i=0; i<s.length; i++){
+        let ch = s[i];
+        if(ch === ' '){
+            answer += ' ';   
+            continue;
         }
-
-        if(65 <= code && code <= 90){
-            return String.fromCharCode((code+n - 65) % 26 + 65)
-        }
-        return ' ';
-    }).join('')
-
-    return answer
+        let which = upper.includes(ch) ? upper : lower;
+        let idx = which.indexOf(ch) + n;
+        idx = idx >= 26 ? idx-26 : idx;
+        answer += which[idx];
+    }
+    return answer;
 }

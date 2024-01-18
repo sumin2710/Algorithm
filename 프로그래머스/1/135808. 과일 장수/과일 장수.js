@@ -1,15 +1,10 @@
-function solution(k, m, score) {
-    if(score.length < m){
-        return 0;
-    }
-    
-    score.sort((a, b) => a - b);
-    
-    let total = 0;  
-    while(score.length >= m){
-        const box = score.splice(score.length - m, m);
-        total += m * box[0];
-    }
-    
-    return total;
+function solution(k, m, score){
+  let answer = 0;
+  // score.slice()로 score 복사 
+  let sortedScore = score.sort((a,b) => a-b).slice(score.length%m);
+  console.log(sortedScore);
+  for(let i=0; i< sortedScore.length; i += m){
+    answer += sortedScore[i]*m;
+  }
+  return answer;
 }

@@ -1,26 +1,15 @@
-let n = require('fs').readFileSync(0, 'utf-8').trim();
-n = Number(n);
+let n = Number(require('fs').readFileSync(0, 'utf-8').trim());
 
-if (n === 1) {
-  console.log('1/1');
-} else {
-  let acc = 1;
-  for (let i = 2; i < 10_000_000; i++) {
-    // i번째 이하 구하기 가능
-    acc += i;
-    if (n <= acc) {
-      // i번째 요소들은 acc-i+1번째부터 시작
-      // n번째 요소는 i번째 요소들 중 인덱스 n - (acc-i+1)에 해당
-      let answer = [];
-      for (let j = 1; j <= i; j++) {
-        answer.push(`${j}/${i + 1 - j}`);
-      }
-      if (i % 2 !== 0) {
-        answer.reverse();
-      }
-      
-      console.log(answer[n - (acc - i + 1)]);
-      break;
-    }
-  }
+let max = 1, diagonal = 1; // max : 현재까지 나온 분수 총 개수, diagonal : n번째 분수가 속한 대각선의 번호
+
+while(max < n) { // max === n이면 종료
+    max += diagonal++ + 1;  // diagonal : 2, 3, 4 ... // max : 3, 6, 10 ... 
+}
+
+const idx = diagonal - (max - n); // diagonal번째 대각선(diagonal개의 요소)의 idx번째 분수
+
+if(diagonal % 2) { // 홀수번째 대각선은 아래에서 위로 증가
+   console.log(`${diagonal - idx + 1}/${idx}`); 
+}else {
+    console.log(`${idx}/${diagonal - idx + 1}`);
 }

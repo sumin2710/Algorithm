@@ -1,6 +1,3 @@
 n = int(input())
-acc = 0
-for i in range(1, n-1):
-  acc += (n-i)*(n-i-1)//2
-print(acc)
-print(3)
+print((n-2)*(n-1)*n//6)
+print(3) # O(n^3)

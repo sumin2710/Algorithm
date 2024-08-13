@@ -1,11 +1,16 @@
 n = int(input())
-arr = []
-for i in range(0, n//5+1):
-  for j in range(0, n//3+1):
-    if 5*i + 3*j == n:
-      arr.append(i+j)
-
-if len(arr) > 0:
-  print(sorted(arr)[0])
+count = 0
+# 3을 빼가면서 그 나머지가 5로 나누어떨어지는지
+while n > 0:
+    if n % 5 == 0:
+        count += n // 5
+        n = 0
+        break
+    else:
+        n -= 3
+        count += 1
+if n == 0:
+    print(count)
 else:
-  print(-1)
+    print(-1)
+        

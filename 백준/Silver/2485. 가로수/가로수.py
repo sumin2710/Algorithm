@@ -1,4 +1,6 @@
 import math
+import sys
+input = sys.stdin.readline
 
 n = int(input())
 li = [int(input()) for _ in range(n)]
@@ -11,4 +13,7 @@ gcd_d = d[0]
 for i in range(1, n-1):
   gcd_d = math.gcd(gcd_d, d[i])
 
-print(sum(d) // gcd_d - len(d))
+cnt = 0
+for dist in d:
+    cnt += dist // gcd_d - 1
+print(cnt)

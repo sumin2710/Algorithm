@@ -3,16 +3,14 @@ li = list(map(int, input().split()))
 li.sort()
 
 arr = []
-def recur(number):
+def recur(number, start):
     if number == m:
       print(*arr)
       return
     
-    for i in range(n):
-      if len(arr) > 0 and li[i] < arr[len(arr)-1]: 
-         continue
+    for i in range(start, n):
       arr.append(li[i])
-      recur(number+1)
+      recur(number+1, i)
       arr.pop()
 
-recur(0)
+recur(0, 0)
